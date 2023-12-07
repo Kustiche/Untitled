@@ -1,0 +1,279 @@
+.form
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+  padding: 45px 30px 30px 25px
+  width: 100%
+  max-width: 480px
+  border-radius: 15px
+  background: $tobacco-brown
+  backdrop-filter: blur(3.5px)
+
+  &__subtitle
+    margin: 0
+    margin-bottom: 25px
+    font-size: 32px
+    font-style: normal
+    font-family: "Rubik-Black", sans-serif
+    font-weight: 900
+    line-height: 140%
+
+    &--center
+      margin: 0 auto
+      margin-bottom: 25px
+
+  &__inner-range
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin-bottom: 40px
+    width: 100%
+
+  &__subinner-range
+    padding: 18px 10px
+    width: 100%
+    max-width: 320px
+    border-radius: 15px
+    background-color: $white
+    line-height: 0
+    position: relative
+    &::after
+      position: absolute
+      content: ''
+      width: 90%
+      border-top: 4px solid rgba(0, 0, 0, 0.15)
+      top: 50%
+      left: 6%
+      border-radius: 16px
+      transform: translateY(-50%)
+      z-index: 0
+
+  &__range
+    appearance: none
+    width: 100%
+    cursor: pointer
+    outline: none
+    height: 4px
+    border-radius: 4px
+    background: linear-gradient(to right, #5A483F 0%, #fff 0%)
+    position: relative
+
+    &::-webkit-slider-runnable-track
+      height: 15px
+
+    &::-moz-range-track
+      height: 15px
+
+    &::-webkit-slider-thumb
+      -webkit-appearance: none
+      appearance: none
+      height: 15px
+      width: 15px
+      background-color: $white
+      border: 2px solid $tobacco-brown
+      border-radius: 50%
+      transition: .2s ease-in-out
+      z-index: 1
+      position: relative
+
+    &::-moz-range-thumb
+      -webkit-appearance: none
+      appearance: none
+      height: 15px
+      width: 15px
+      background-color: $white
+      border: 2px solid $tobacco-brown
+      transition: .2s ease-in-out
+      z-index: 1
+      position: relative
+
+  &__inner-output
+    padding: 9px 28px
+    max-width: 100px
+    border-radius: 15px
+    background: $white
+    position: relative
+
+  &__output
+    padding: 0
+    max-width: 40px
+    color: $black
+    font-family: "Inter-Regular", sans-serif
+    font-weight: 400
+    font-size: 20px
+    font-weight: 400
+    border: none
+    text-align: center
+
+  &__button
+    position: absolute
+    width: 12px
+    height: 12px
+    top: 50%
+    right: 7px
+    transform: translateY(-50%)
+    &::after
+      position: absolute
+      content: ''
+      width: 100%
+      border-top: 2px solid $taupe
+      top: 50%
+      left: 0
+      transform: translateY(-50%)
+    &::before
+      display: flex
+      position: absolute
+      content: ''
+      height: 100%
+      border-left: 2px solid $taupe
+      top: 0
+      left: 50%
+      transform: translateX(-50%)
+    &--minus
+      left: 7px
+      &::before
+        display: none
+
+  &__inner
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    margin-bottom: 15px
+    padding: 20px 0
+    width: 100%
+    position: relative
+    &::after
+      position: absolute
+      content: ''
+      width: 100%
+      border-top: 1px solid $white
+      top: 0
+      left: 0
+    &::before
+      position: absolute
+      content: ''
+      width: 100%
+      border-top: 1px solid $white
+      bottom: 0
+      left: 0
+
+  &__variants
+    display: grid
+    grid-template-columns: repeat(2, auto)
+    row-gap: 5px
+    column-gap: 100px
+    width: 100%
+
+  &__subinner
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    padding-left: 27px
+
+  &__radio
+    display: none
+    margin-right: 10pxr
+    &:checked + .form__descr
+      &::after
+        display: flex
+
+  &__descr
+    font-size: 21px
+    line-height: normal
+    cursor: pointer
+    position: relative
+    &::after
+      display: none
+      position: absolute
+      content: ''
+      width: 10px
+      height: 10px
+      border-radius: 50%
+      background-color: $white
+      top: 50%
+      left: -22px
+      transform: translateY(-50%)
+    &::before
+      position: absolute
+      content: ''
+      width: 20px
+      height: 20px
+      border: 1px solid $white
+      border-radius: 50%
+      top: 50%
+      left: -27px
+      transform: translateY(-50%)
+      transition: box-shadow .2s
+    &:active
+      &::after
+        display: flex
+        background-color: rgba(255, 255, 255, 0.5)
+    &:hover
+      &::before
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5)
+
+  &__sum
+    display: flex
+    justify-content: flex-start
+    margin-bottom: 20px
+    font-family: "Rubik-SemiBold", sans-serif
+    font-size: 40px
+    font-weight: 600
+    line-height: normal
+
+  &__phone
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    position: relative
+    margin-bottom: 25px
+    width: 100%
+
+  &__number
+    padding: 15px 20px
+    width: 100%
+    max-width: 420px
+    color: $white
+    font-size: 24px
+    line-height: normal
+    background-color: transparent
+    border-radius: 24px
+    border: 1px solid rgba(246, 251, 253, 0.28)
+    &::placeholder
+      color: rgba(255, 255, 255, 0.35)
+
+  &__btn
+    padding: 13.5px 30px
+    font-size: 22px
+    line-height: 150%
+    border-radius: 99px
+    background-color: $kabul
+    position: absolute
+    top: 0
+    right: 0
+    transition: all .4s
+    &:hover
+      color: $kabul
+      background-color: $white
+
+  &__text
+    margin: 0
+    font-size: 12px
+    line-height: normal
+
+  &__link
+    text-decoration-line: underline
+    position: relative
+    transition: color .2s
+    &::after
+      position: absolute
+      content: ''
+      width: 100%
+      border-top: 1px solid $white
+      bottom: 0
+      left: 0
+      transition: border-top .2s
+    &:hover
+      color: $blue
+      &::after
+        border-top: 1px solid $blue

@@ -1,0 +1,75 @@
+.hero 
+  padding-top: 60px
+  width: 100%
+  max-width: 100vw
+  min-height: 100vh  
+  background-image: url(../../img/hero/background.jpg)
+  background-size: cover
+  background-position: center
+  background-repeat: no-repeat
+
+  &__wrap
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+  &__inner
+    padding: 65px 100px
+    width: 100%
+    max-width: 845px
+    border-radius: 25px
+    background: rgba(0, 0, 0, 0.15)
+    backdrop-filter: blur(3.5px)
+
+  &__title
+    margin: 0
+    margin-bottom: 50px
+    font-size: 64px
+    font-style: normal
+    font-family: "Rubik-Bold", sans-serif
+    font-weight: 700
+    line-height: 140%
+
+  &__text
+    margin: 0
+    margin-bottom: 75px
+    font-size: 28px
+    font-weight: 400
+    line-height: 140%
+
+  &__descr--fatty
+    font-family: "Rubik-Bold", sans-serif
+    font-weight: 700
+
+  &__buttons
+    display: flex
+    justify-content: space-between
+    align-items: center
+    width: 100%
+    max-width: 615px
+
+  &__btn
+    padding: 15px 35px
+    font-size: 22px
+    font-style: normal
+    font-weight: 400
+    line-height: 150%
+    border-radius: 99px
+    background: $kabul
+    transition: all .4s
+    &:hover
+      color: $kabul
+      background-color: $white
+
+  &__link
+    padding: 15px 35px
+    font-size: 22px
+    font-style: normal
+    font-weight: 400
+    line-height: 150%
+    border-radius: 99px
+    border: 1px solid $white
+    background: rgba(255, 255, 255, 0.00)
+    transition: transform .4s
+    &:hover
+      transform: scale(0.95)
