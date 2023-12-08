@@ -44,8 +44,7 @@ function priceCalculation(e) {
 	} else if (
 		(isOutout && isNaN(Number(e.target.value))) ||
 		e.target.value > 400 ||
-		e.target.value < 0 ||
-		e.target.value === ""
+		e.target.value < 0
 	) {
 		output = tempSliderValue;
 		tempSliderValue = tempSliderValue;
@@ -63,7 +62,21 @@ function priceCalculation(e) {
 	});
 
 	amounts.forEach((sum) => {
-		sum.textContent = tempSliderValue * floorType.price;
+		const money = `${tempSliderValue * floorType.price}`.split("");
+		let id = money.length % 3 === 2 ? 1 : money.length % 3 === 1 ? 2 : 0;
+		const filteredBudget = money.map((item) => {
+			id++;
+			if (id % 3 !== 0) {
+				return item;
+			} else {
+				return `${item} `;
+			}
+		});
+		const filteredBudgetLength = filteredBudget.join("").length;
+		sum.textContent =
+			id % 3 === 0
+				? filteredBudget.join("").substring(0, filteredBudgetLength - 1)
+				: filteredBudget.join("");
 	});
 }
 
