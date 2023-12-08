@@ -36,17 +36,6 @@
     border-radius: 15px
     background-color: $white
     line-height: 0
-    position: relative
-    &::after
-      position: absolute
-      content: ''
-      width: 90%
-      border-top: 4px solid rgba(0, 0, 0, 0.15)
-      top: 50%
-      left: 6%
-      border-radius: 16px
-      transform: translateY(-50%)
-      z-index: 0
 
   &__range
     appearance: none
@@ -55,14 +44,8 @@
     outline: none
     height: 4px
     border-radius: 4px
-    background: linear-gradient(to right, #5A483F 0%, #fff 0%)
+    background: linear-gradient(to right, #5A483F 0%, rgba(0, 0, 0, 0.15) 0%)
     position: relative
-
-    &::-webkit-slider-runnable-track
-      height: 15px
-
-    &::-moz-range-track
-      height: 15px
 
     &::-webkit-slider-thumb
       -webkit-appearance: none
@@ -230,7 +213,7 @@
     width: 100%
 
   &__number
-    padding: 15px 20px
+    padding: 15px 180px 15px 20px
     width: 100%
     max-width: 420px
     color: $white
