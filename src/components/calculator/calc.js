@@ -16,6 +16,8 @@ let tempSliderValue = 0;
 let progress = 0;
 let sliderElValue = 0;
 let output = 0;
+let timerId = null;
+let interval = null;
 
 function priceCalculation(e) {
 	const isRange = e.target.className === "form__range";
@@ -23,7 +25,6 @@ function priceCalculation(e) {
 	const isPlus = e.target.className === "form__button btn-reset";
 	const isMinus =
 		e.target.className === "form__button form__button--minus btn-reset";
-	const floorType = priceOptions.find((item) => item.name === variant);
 
 	if (isRange) {
 		sliderElValue = e.target.value;
@@ -37,14 +38,6 @@ function priceCalculation(e) {
 		}
 		sliderElValue = tempSliderValue;
 		output = tempSliderValue;
-	} else if (isPlus && tempSliderValue >= 0 && tempSliderValue < 400) {
-		tempSliderValue = ++tempSliderValue;
-		output = tempSliderValue;
-		sliderElValue = tempSliderValue;
-	} else if (isMinus && tempSliderValue > 0 && tempSliderValue <= 400) {
-		tempSliderValue = --tempSliderValue;
-		output = tempSliderValue;
-		sliderElValue = tempSliderValue;
 	} else if (
 		(isOutout && isNaN(Number(e.target.value))) ||
 		e.target.value > 400 ||
@@ -53,8 +46,20 @@ function priceCalculation(e) {
 		output = tempSliderValue;
 		tempSliderValue = tempSliderValue;
 		sliderElValue = tempSliderValue;
+	} else if (isPlus && tempSliderValue >= 0 && tempSliderValue < 400) {
+		tempSliderValue = ++tempSliderValue;
+		output = tempSliderValue;
+		sliderElValue = tempSliderValue;
+	} else if (isMinus && tempSliderValue > 0 && tempSliderValue <= 400) {
+		tempSliderValue = --tempSliderValue;
+		output = tempSliderValue;
+		sliderElValue = tempSliderValue;
 	}
 
+	distributionResults();
+}
+
+function distributionResults() {
 	sliderElements.forEach((sliderEl) => {
 		sliderEl.value = sliderElValue;
 		progress = (tempSliderValue / sliderEl.max) * 100;
@@ -66,6 +71,7 @@ function priceCalculation(e) {
 	});
 
 	amounts.forEach((sum) => {
+		const floorType = priceOptions.find((item) => item.name === variant);
 		const money = `${tempSliderValue * floorType.price}`.split("");
 		let id = money.length % 3 === 2 ? 1 : money.length % 3 === 1 ? 2 : 0;
 		const filteredBudget = money.map((item) => {
@@ -82,6 +88,41 @@ function priceCalculation(e) {
 				? filteredBudget.join("").substring(0, filteredBudgetLength - 1)
 				: filteredBudget.join("");
 	});
+}
+
+function changeValueOutput(e, isClick) {
+	const isPlus = e.target.className === "form__button btn-reset";
+	const isMinus =
+		e.target.className === "form__button form__button--minus btn-reset";
+
+	if (isPlus && tempSliderValue >= 0 && tempSliderValue < 400) {
+		timerId = setTimeout(() => {
+			interval = setInterval(() => {
+				tempSliderValue =
+					tempSliderValue < 400 ? ++tempSliderValue : tempSliderValue;
+				output = tempSliderValue;
+				sliderElValue = tempSliderValue;
+				distributionResults();
+			}, 50);
+		}, 300);
+	} else if (isMinus && tempSliderValue > 0 && tempSliderValue <= 400) {
+		timerId = setTimeout(() => {
+			interval = setInterval(() => {
+				tempSliderValue =
+					tempSliderValue > 0 ? --tempSliderValue : tempSliderValue;
+				output = tempSliderValue;
+				sliderElValue = tempSliderValue;
+				distributionResults();
+			}, 50);
+		}, 200);
+	}
+
+	distributionResults();
+}
+
+function clearTimers() {
+	clearTimeout(timerId);
+	clearInterval(interval);
 }
 
 function maskPhone(selector, masked = "+7 (___) ___-__-__") {
@@ -169,13 +210,42 @@ innerRanges.forEach((innerRange) => {
 		}
 	});
 
-	innerRange.addEventListener("click", (e) => {
-		const isRange = e.target.className === "form__range";
+	innerRange.addEventListener("mousedown", (e) => {
 		const isPlus = e.target.className === "form__button btn-reset";
 		const isMinus =
 			e.target.className === "form__button form__button--minus btn-reset";
 
-		if (isRange || isPlus || isMinus) {
+		if (isPlus || isMinus) {
+			changeValueOutput(e, "mousedown");
+		}
+	});
+
+	innerRange.addEventListener("mouseup", (e) => {
+		const isPlus = e.target.className === "form__button btn-reset";
+		const isMinus =
+			e.target.className === "form__button form__button--minus btn-reset";
+
+		if (isPlus || isMinus) {
+			clearTimers();
+		}
+	});
+
+	innerRange.addEventListener("mouseout", (e) => {
+		const isPlus = e.target.className === "form__button btn-reset";
+		const isMinus =
+			e.target.className === "form__button form__button--minus btn-reset";
+
+		if (isPlus || isMinus) {
+			clearTimers();
+		}
+	});
+
+	innerRange.addEventListener("click", (e) => {
+		const isPlus = e.target.className === "form__button btn-reset";
+		const isMinus =
+			e.target.className === "form__button form__button--minus btn-reset";
+
+		if (isPlus || isMinus) {
 			priceCalculation(e);
 		}
 	});
