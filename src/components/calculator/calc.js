@@ -30,7 +30,11 @@ function priceCalculation(e) {
 		tempSliderValue = e.target.value;
 		output = tempSliderValue;
 	} else if (isOutout && e.target.value <= 400 && e.target.value >= 0) {
-		tempSliderValue = e.target.value;
+		if (e.target.value === "0" || e.target.value === "") {
+			tempSliderValue = 0;
+		} else {
+			tempSliderValue = e.target.value.replace(0, "");
+		}
 		sliderElValue = tempSliderValue;
 		output = tempSliderValue;
 	} else if (isPlus && tempSliderValue >= 0 && tempSliderValue < 400) {
