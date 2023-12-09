@@ -447,20 +447,6 @@ body.lock {
   border-radius: 15px;
   background-color: #ffffff;
   line-height: 0;
-  position: relative;
-}
-.form__subinner-range::after {
-  position: absolute;
-  content: "";
-  width: 90%;
-  border-top: 4px solid rgba(0, 0, 0, 0.15);
-  top: 50%;
-  left: 6%;
-  border-radius: 16px;
-  -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-          transform: translateY(-50%);
-  z-index: 0;
 }
 .form__range {
   -webkit-appearance: none;
@@ -471,15 +457,9 @@ body.lock {
   outline: none;
   height: 4px;
   border-radius: 4px;
-  background: -webkit-gradient(linear, left top, right top, from(#5A483F), color-stop(0%, #fff));
-  background: linear-gradient(to right, #5A483F 0%, #fff 0%);
+  background: -webkit-gradient(linear, left top, right top, from(#5A483F), color-stop(0%, rgba(0, 0, 0, 0.15)));
+  background: linear-gradient(to right, #5A483F 0%, rgba(0, 0, 0, 0.15) 0%);
   position: relative;
-}
-.form__range::-webkit-slider-runnable-track {
-  height: 15px;
-}
-.form__range::-moz-range-track {
-  height: 15px;
 }
 .form__range::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -705,7 +685,7 @@ body.lock {
   width: 100%;
 }
 .form__number {
-  padding: 15px 20px;
+  padding: 15px 180px 15px 20px;
   width: 100%;
   max-width: 420px;
   color: #ffffff;
