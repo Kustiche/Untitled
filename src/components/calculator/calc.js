@@ -1,10 +1,10 @@
-const forms = document.querySelectorAll(".form");
-const innerRanges = document.querySelectorAll(".form__inner-range");
-const sliderElements = document.querySelectorAll(".form__range");
-const outputs = document.querySelectorAll(".form__output");
-const variants = document.querySelectorAll(".form__radio");
-const amounts = document.querySelectorAll(".form__sum-descr");
-const numbers = document.querySelectorAll(".form__number");
+const calcs = document.querySelectorAll(".calc");
+const innerRanges = document.querySelectorAll(".calc__inner-range");
+const sliderElements = document.querySelectorAll(".calc__range");
+const outputs = document.querySelectorAll(".calc__output");
+const variants = document.querySelectorAll(".calc__radio");
+const amounts = document.querySelectorAll(".calc__sum-descr");
+const numbers = document.querySelectorAll(".calc__number");
 const priceOptions = [
 	{ name: "Ламинат", price: 250 },
 	{ name: "Паркет", price: 350 },
@@ -12,19 +12,19 @@ const priceOptions = [
 	{ name: "Наливной пол", price: 300 },
 ];
 let variant = "Ламинат";
-let tempSliderValue = 0;
+let tempSliderValue = 32;
 let progress = 0;
-let sliderElValue = 0;
-let output = 0;
+let sliderElValue = 32;
+let output = 32;
 let timerId = null;
 let interval = null;
 
 function priceCalculation(e) {
-	const isRange = e.target.className === "form__range";
-	const isOutout = e.target.className === "form__output";
-	const isPlus = e.target.className === "form__button btn-reset";
+	const isRange = e.target.className === "calc__range";
+	const isOutout = e.target.className === "calc__output";
+	const isPlus = e.target.className === "calc__button btn-reset";
 	const isMinus =
-		e.target.className === "form__button form__button--minus btn-reset";
+		e.target.className === "calc__button calc__button--minus btn-reset";
 
 	if (isRange) {
 		sliderElValue = e.target.value;
@@ -90,10 +90,10 @@ function distributionResults() {
 	});
 }
 
-function changeValueOutput(e, isClick) {
-	const isPlus = e.target.className === "form__button btn-reset";
+function changeValueOutput(e) {
+	const isPlus = e.target.className === "calc__button btn-reset";
 	const isMinus =
-		e.target.className === "form__button form__button--minus btn-reset";
+		e.target.className === "calc__button calc__button--minus btn-reset";
 
 	if (isPlus && tempSliderValue >= 0 && tempSliderValue < 400) {
 		timerId = setTimeout(() => {
@@ -167,26 +167,6 @@ function maskPhone(selector, masked = "+7 (___) ___-__-__") {
 	}
 }
 
-function substitution() {
-	sliderElements.forEach((sliderEl) => {
-		sliderEl.value = 0;
-	});
-
-	outputs.forEach((output) => {
-		output.value = 0;
-	});
-
-	variants.forEach((variant) => {
-		if (variant.value === variants[0].value) {
-			variant.checked = "true";
-		}
-	});
-
-	numbers.forEach((number) => {
-		number.value = "";
-	});
-}
-
 variants.forEach((item) => {
 	item.addEventListener("click", (e) => {
 		variants.forEach((variant) => {
@@ -202,8 +182,8 @@ variants.forEach((item) => {
 
 innerRanges.forEach((innerRange) => {
 	innerRange.addEventListener("input", (e) => {
-		const isRange = e.target.className === "form__range";
-		const isOutout = e.target.className === "form__output";
+		const isRange = e.target.className === "calc__range";
+		const isOutout = e.target.className === "calc__output";
 
 		if (isRange || isOutout) {
 			priceCalculation(e);
@@ -211,9 +191,9 @@ innerRanges.forEach((innerRange) => {
 	});
 
 	innerRange.addEventListener("mousedown", (e) => {
-		const isPlus = e.target.className === "form__button btn-reset";
+		const isPlus = e.target.className === "calc__button btn-reset";
 		const isMinus =
-			e.target.className === "form__button form__button--minus btn-reset";
+			e.target.className === "calc__button calc__button--minus btn-reset";
 
 		if (isPlus || isMinus) {
 			changeValueOutput(e, "mousedown");
@@ -221,9 +201,9 @@ innerRanges.forEach((innerRange) => {
 	});
 
 	innerRange.addEventListener("mouseup", (e) => {
-		const isPlus = e.target.className === "form__button btn-reset";
+		const isPlus = e.target.className === "calc__button btn-reset";
 		const isMinus =
-			e.target.className === "form__button form__button--minus btn-reset";
+			e.target.className === "calc__button calc__button--minus btn-reset";
 
 		if (isPlus || isMinus) {
 			clearTimers();
@@ -231,9 +211,9 @@ innerRanges.forEach((innerRange) => {
 	});
 
 	innerRange.addEventListener("mouseout", (e) => {
-		const isPlus = e.target.className === "form__button btn-reset";
+		const isPlus = e.target.className === "calc__button btn-reset";
 		const isMinus =
-			e.target.className === "form__button form__button--minus btn-reset";
+			e.target.className === "calc__button calc__button--minus btn-reset";
 
 		if (isPlus || isMinus) {
 			clearTimers();
@@ -241,9 +221,9 @@ innerRanges.forEach((innerRange) => {
 	});
 
 	innerRange.addEventListener("click", (e) => {
-		const isPlus = e.target.className === "form__button btn-reset";
+		const isPlus = e.target.className === "calc__button btn-reset";
 		const isMinus =
-			e.target.className === "form__button form__button--minus btn-reset";
+			e.target.className === "calc__button calc__button--minus btn-reset";
 
 		if (isPlus || isMinus) {
 			priceCalculation(e);
@@ -251,12 +231,12 @@ innerRanges.forEach((innerRange) => {
 	});
 });
 
-forms.forEach((form) => {
-	form.addEventListener("submit", (e) => {
+calcs.forEach((calc) => {
+	calc.addEventListener("submit", (e) => {
 		e.preventDefault();
 	});
 });
 
-substitution();
+distributionResults();
 
-maskPhone(".form__number", "+7 (___) ___-__-__");
+maskPhone(".calc__number", "+7 (___) ___-__-__");

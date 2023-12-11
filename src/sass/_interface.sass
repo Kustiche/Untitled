@@ -1,4 +1,4 @@
-.form
+.calc
   display: flex
   flex-direction: column
   align-items: flex-start
@@ -95,6 +95,7 @@
     top: 50%
     right: 7px
     transform: translateY(-50%)
+    transition: transform .4s
     &::after
       position: absolute
       content: ''
@@ -112,6 +113,8 @@
       top: 0
       left: 50%
       transform: translateX(-50%)
+    &:hover 
+      transform: translateY(-50%) scale(1.2)
     &--minus
       left: 7px
       &::before
@@ -156,7 +159,7 @@
   &__radio
     display: none
     margin-right: 10pxr
-    &:checked + .form__descr
+    &:checked + .calc__descr
       &::after
         display: flex
 
@@ -257,6 +260,6 @@
       left: 0
       transition: border-top .2s
     &:hover
-      color: $blue
+      color: rgba(255, 255, 255, 0.7)
       &::after
-        border-top: 1px solid $blue
+        border-top: 1px solid rgba(255, 255, 255, 0.7)
