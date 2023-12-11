@@ -5,17 +5,17 @@
 				<h1 class="hero__title">Установка половых покрытий</h1>
 				<p class="hero__text">
 					<span>Дадим скидку 5% по промокоду</span>
-					<span class="hero__descr hero__descr--fatty"> “ЛюбимПолы”</span>
+					<span class="hero__descr"> “ЛюбимПолы”</span>
 				</p>
-				<div class="hero__buttons">
-					<button class="hero__btn btn-reset">Оставить заявку</button>
-					<a class="hero__link link-reset" href="#/">Посмотреть наши работы</a>
+				<div class="hero__links">
+					<a class="hero__link link-reset" href="#/">Оставить заявку</a>
+					<a class="hero__link hero__link--transparent link-reset" href="#/"
+						>Посмотреть наши работы</a
+					>
 				</div>
 			</div>
 			<form class="hero__calc calc" action="#/" method="post">
-				<h2 class="calc__subtitle calc__subtitle--center">
-					Площадь помещения, м<sup>2</sup>
-				</h2>
+				<h2 class="calc__title title">Площадь помещения, м<sup>2</sup></h2>
 				<div class="calc__inner-range">
 					<div class="calc__subinner-range">
 						<input
@@ -26,9 +26,9 @@
 							max="400"
 						/>
 					</div>
-					<div class="calc__inner-output">
+					<div class="calc__inner-input">
 						<button class="calc__button btn-reset" type="button"></button>
-						<input class="calc__output" type="text" value="0" />
+						<input class="calc__input" type="text" value="0" />
 						<button
 							class="calc__button calc__button--minus btn-reset"
 							type="button"
@@ -36,8 +36,8 @@
 					</div>
 				</div>
 				<div class="calc__inner">
-					<h2 class="calc__subtitle">Тип пола</h2>
-					<div class="calc__variants">
+					<h3 class="calc__subtitle title">Тип пола</h3>
+					<div class="calc__types">
 						<div class="calc__subinner">
 							<input
 								class="calc__radio"
@@ -81,7 +81,7 @@
 						</div>
 					</div>
 				</div>
-				<h2 class="calc__subtitle">Стоимость установки:</h2>
+				<h3 class="calc__subtitle title">Стоимость установки:</h3>
 				<output class="calc__sum">
 					<span class="calc__sum-descr">0</span>
 					<span class="calc__sign">&#8381;</span>

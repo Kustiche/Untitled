@@ -9,18 +9,8 @@
   background: $tobacco-brown
   backdrop-filter: blur(3.5px)
 
-  &__subtitle
-    margin: 0
-    margin-bottom: 25px
-    font-size: 32px
-    font-style: normal
-    font-family: "Rubik-Black", sans-serif
-    font-weight: 900
-    line-height: 140%
-
-    &--center
-      margin: 0 auto
-      margin-bottom: 25px
+  &__title
+    margin: 0 auto
 
   &__inner-range
     display: flex
@@ -70,14 +60,14 @@
       z-index: 1
       position: relative
 
-  &__inner-output
+  &__inner-input
     padding: 9px 28px
     max-width: 100px
     border-radius: 15px
     background: $white
     position: relative
 
-  &__output
+  &__input
     padding: 0
     max-width: 40px
     color: $black
@@ -143,7 +133,7 @@
       bottom: 0
       left: 0
 
-  &__variants
+  &__types
     display: grid
     grid-template-columns: repeat(2, auto)
     row-gap: 5px
@@ -263,3 +253,12 @@
       color: rgba(255, 255, 255, 0.7)
       &::after
         border-top: 1px solid rgba(255, 255, 255, 0.7)
+
+  .title
+    margin: 0
+    margin-bottom: 25px
+    font-size: 32px
+    font-style: normal
+    font-family: "Rubik-Black", sans-serif
+    font-weight: 900
+    line-height: 140%
