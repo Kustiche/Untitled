@@ -725,7 +725,7 @@ body.lock {
   color: #694F41;
   background-color: #ffffff;
 }
-.calc__text {
+.calc__policy {
   margin: 0;
   font-size: 12px;
   line-height: normal;
@@ -808,7 +808,7 @@ body.lock {
   font-weight: 400;
   line-height: 140%;
 }
-.hero__descr {
+.hero__discount {
   font-family: "Rubik-Bold", sans-serif;
   font-weight: 700;
 }
