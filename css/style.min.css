@@ -414,18 +414,8 @@ body.lock {
   -webkit-backdrop-filter: blur(3.5px);
           backdrop-filter: blur(3.5px);
 }
-.calc__subtitle {
-  margin: 0;
-  margin-bottom: 25px;
-  font-size: 32px;
-  font-style: normal;
-  font-family: "Rubik-Black", sans-serif;
-  font-weight: 900;
-  line-height: 140%;
-}
-.calc__subtitle--center {
+.calc__title {
   margin: 0 auto;
-  margin-bottom: 25px;
 }
 .calc__inner-range {
   display: -webkit-box;
@@ -487,14 +477,14 @@ body.lock {
   z-index: 1;
   position: relative;
 }
-.calc__inner-output {
+.calc__inner-input {
   padding: 9px 28px;
   max-width: 100px;
   border-radius: 15px;
   background: #ffffff;
   position: relative;
 }
-.calc__output {
+.calc__input {
   padding: 0;
   max-width: 40px;
   color: #000000;
@@ -587,7 +577,7 @@ body.lock {
   bottom: 0;
   left: 0;
 }
-.calc__variants {
+.calc__types {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (auto)[2];
@@ -762,6 +752,15 @@ body.lock {
 .calc__link:hover::after {
   border-top: 1px solid rgba(255, 255, 255, 0.7);
 }
+.calc .title {
+  margin: 0;
+  margin-bottom: 25px;
+  font-size: 32px;
+  font-style: normal;
+  font-family: "Rubik-Black", sans-serif;
+  font-weight: 900;
+  line-height: 140%;
+}
 
 .hero {
   padding-top: 60px;
@@ -809,11 +808,11 @@ body.lock {
   font-weight: 400;
   line-height: 140%;
 }
-.hero__descr--fatty {
+.hero__descr {
   font-family: "Rubik-Bold", sans-serif;
   font-weight: 700;
 }
-.hero__buttons {
+.hero__links {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -826,7 +825,7 @@ body.lock {
   width: 100%;
   max-width: 615px;
 }
-.hero__btn {
+.hero__link {
   padding: 15px 35px;
   font-size: 22px;
   font-style: normal;
@@ -837,24 +836,12 @@ body.lock {
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
 }
-.hero__btn:hover {
-  color: #694F41;
-  background-color: #ffffff;
-}
-.hero__link {
-  padding: 15px 35px;
-  font-size: 22px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%;
-  border-radius: 99px;
-  border: 1px solid #ffffff;
-  background-color: transparent;
-  -webkit-transition: all 0.4s;
-  transition: all 0.4s;
-}
 .hero__link:hover {
   color: #694F41;
   background-color: #ffffff;
+}
+.hero__link--transparent {
+  border: 1px solid #ffffff;
+  background-color: transparent;
 }
 /*# sourceMappingURL=style.min.css.map */

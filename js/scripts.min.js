@@ -1,7 +1,7 @@
 const calcs = document.querySelectorAll(".calc");
 const innerRanges = document.querySelectorAll(".calc__inner-range");
 const sliderElements = document.querySelectorAll(".calc__range");
-const outputs = document.querySelectorAll(".calc__output");
+const inputs = document.querySelectorAll(".calc__input");
 const variants = document.querySelectorAll(".calc__radio");
 const amounts = document.querySelectorAll(".calc__sum-descr");
 const numbers = document.querySelectorAll(".calc__number");
@@ -15,13 +15,15 @@ let variant = "Ламинат";
 let tempSliderValue = 32;
 let progress = 0;
 let sliderElValue = 32;
-let output = 32;
+let input = 32;
 let timerId = null;
 let interval = null;
 
+variants[0].checked = "true";
+
 function priceCalculation(e) {
 	const isRange = e.target.className === "calc__range";
-	const isOutout = e.target.className === "calc__output";
+	const isInput = e.target.className === "calc__input";
 	const isPlus = e.target.className === "calc__button btn-reset";
 	const isMinus =
 		e.target.className === "calc__button calc__button--minus btn-reset";
@@ -29,30 +31,32 @@ function priceCalculation(e) {
 	if (isRange) {
 		sliderElValue = e.target.value;
 		tempSliderValue = e.target.value;
-		output = tempSliderValue;
-	} else if (isOutout && e.target.value <= 400 && e.target.value >= 0) {
+		input = tempSliderValue;
+	} else if (isInput && e.target.value <= 400 && e.target.value >= 0) {
 		if (e.target.value === "0" || e.target.value === "") {
 			tempSliderValue = 0;
+		} else if (e.target.value.length !== 4) {
+			tempSliderValue = e.target.value;
 		} else {
 			tempSliderValue = e.target.value.replace(0, "");
 		}
 		sliderElValue = tempSliderValue;
-		output = tempSliderValue;
+		input = tempSliderValue;
 	} else if (
-		(isOutout && isNaN(Number(e.target.value))) ||
+		(isInput && isNaN(Number(e.target.value))) ||
 		e.target.value > 400 ||
 		e.target.value < 0
 	) {
-		output = tempSliderValue;
+		input = tempSliderValue;
 		tempSliderValue = tempSliderValue;
 		sliderElValue = tempSliderValue;
 	} else if (isPlus && tempSliderValue >= 0 && tempSliderValue < 400) {
 		tempSliderValue = ++tempSliderValue;
-		output = tempSliderValue;
+		input = tempSliderValue;
 		sliderElValue = tempSliderValue;
 	} else if (isMinus && tempSliderValue > 0 && tempSliderValue <= 400) {
 		tempSliderValue = --tempSliderValue;
-		output = tempSliderValue;
+		input = tempSliderValue;
 		sliderElValue = tempSliderValue;
 	}
 
@@ -66,8 +70,8 @@ function distributionResults() {
 		sliderEl.style.background = `linear-gradient(to right, #5A483F ${progress}%, rgba(0, 0, 0, 0.15) ${progress}%)`;
 	});
 
-	outputs.forEach((item) => {
-		item.value = output;
+	inputs.forEach((item) => {
+		item.value = input;
 	});
 
 	amounts.forEach((sum) => {
@@ -90,7 +94,7 @@ function distributionResults() {
 	});
 }
 
-function changeValueOutput(e) {
+function changeValueInput(e) {
 	const isPlus = e.target.className === "calc__button btn-reset";
 	const isMinus =
 		e.target.className === "calc__button calc__button--minus btn-reset";
@@ -100,7 +104,7 @@ function changeValueOutput(e) {
 			interval = setInterval(() => {
 				tempSliderValue =
 					tempSliderValue < 400 ? ++tempSliderValue : tempSliderValue;
-				output = tempSliderValue;
+				input = tempSliderValue;
 				sliderElValue = tempSliderValue;
 				distributionResults();
 			}, 50);
@@ -110,7 +114,7 @@ function changeValueOutput(e) {
 			interval = setInterval(() => {
 				tempSliderValue =
 					tempSliderValue > 0 ? --tempSliderValue : tempSliderValue;
-				output = tempSliderValue;
+				input = tempSliderValue;
 				sliderElValue = tempSliderValue;
 				distributionResults();
 			}, 50);
@@ -183,9 +187,9 @@ variants.forEach((item) => {
 innerRanges.forEach((innerRange) => {
 	innerRange.addEventListener("input", (e) => {
 		const isRange = e.target.className === "calc__range";
-		const isOutout = e.target.className === "calc__output";
+		const isInput = e.target.className === "calc__input";
 
-		if (isRange || isOutout) {
+		if (isRange || isInput) {
 			priceCalculation(e);
 		}
 	});
@@ -196,7 +200,7 @@ innerRanges.forEach((innerRange) => {
 			e.target.className === "calc__button calc__button--minus btn-reset";
 
 		if (isPlus || isMinus) {
-			changeValueOutput(e, "mousedown");
+			changeValueInput(e, "mousedown");
 		}
 	});
 
