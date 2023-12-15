@@ -844,4 +844,21 @@ body.lock {
   border: 1px solid #ffffff;
   background-color: transparent;
 }
+
+.survey {
+  padding-top: 60px;
+  width: 100%;
+  height: 100vh;
+  background-image: url(../img/hero/background.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.quiz {
+  padding: 40px 60px;
+  width: 100%;
+  max-width: 880px;
+  min-height: 545px;
+}
 /*# sourceMappingURL=style.min.css.map */
